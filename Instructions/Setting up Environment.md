@@ -192,24 +192,24 @@ sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
  ```
 
-Once those commands finished install Moby container engine
+2. Once those commands finished install Moby container engine
 
  ```bash
 sudo apt-get update; \
   sudo apt-get install moby-engine
  ```
-When you are asked **Do you want to continue Y/N** press **Y** to continue
+  When you are asked **Do you want to continue Y/N** press **Y** to continue
 
-Next install edge runtime
+3. Next install edge runtime
 
  ```bash
 sudo apt-get update; \
   sudo apt-get install aziot-edge defender-iot-micro-agent-edge
  ```
 
- Once again you will be asked **Do you want to continue Y/N** press **Y** to continue
+  Once again you will be asked **Do you want to continue Y/N** press **Y** to continue
 
-Next steps you will generate a template config.toml file to connect to IoT Central.
+4. Next steps you will generate a template config.toml file to connect to IoT Central.
 
  ```bash
    sudo cp /etc/aziot/config.toml.edge.template /etc/aziot/config.toml
