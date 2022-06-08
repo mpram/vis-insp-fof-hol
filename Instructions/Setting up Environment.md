@@ -287,7 +287,7 @@ Uncomment the lines, removing the **#** as shown below, 8 lines needs to be unco
 
   ![Firefox Access](./images/config-toml.png 'Firefox Access')
 
-Replace the Following values:
+Replace the Following values from IoT Central
   - Id_scope = Id Scope
   - Registration_Id = Device ID
   - Symmetric_key value = Primary Key
@@ -355,12 +355,25 @@ These steps deploy Custom vision service. All the projects can use the same reso
 
 ![Custom Vision](./images/cv-users.png 'Create')
 
-6. Next, we will follow the steps in this tutorial:
+6. Next, we will follow the steps in the tutorial below, however select the following settings when you create the project in Custom vision portal as explained below.
 
+7. When you **Create a new Project** in custom vision, 
+- Project Type: **Object detection**
+- Classification Types: **Multilabel (Multiple tags per image**
+- Domains: **General Compact**
+
+8. Now folow the tutorial to add pictures, tag them and train the model.
 https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/getting-started-build-a-classifier
 
+9. After the model is created, go to **Performance** tab, select **Export** then click in **Docker File**, a new window will open, select **Linux** version, then download. This will generate a zip file in your Download folder.  We will use these files once we set up our Development Environment. 
 
-## Exercise #3: Deploying model and setting up alerts
+**Note** If you don't see the **Export** option that means you select a different Domain than the General Compact defined above, you will need to re-do the project selecting the right domain.
+
+
+
+
+## Exercise #3: Deploying the machine learning model to the device.
+
 
 
 
