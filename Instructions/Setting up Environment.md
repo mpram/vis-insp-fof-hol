@@ -34,7 +34,7 @@ The following requirements will be for your Raspebrry set up
   - Azure IoT Central
   - Custom Vision
   - Azure Container Registry
-  - Alerts to be defined
+  - Storage Account
 
 ## Other Tools:
   - VS Code. Download from here in your laptop:
