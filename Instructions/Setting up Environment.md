@@ -187,38 +187,33 @@ Login with the credentials you set up before, in this lab we are using **Visual0
 1. Install the repository configuration that matches your device operating system.
 
   ```bash
-curl https://packages.microsoft.com/config/ubuntu/18.04/multiarch/prod.list > ./microsoft-prod.list
+wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
  ```
-Copy the generated list to the sources.list.d directory.
+
+Once those commands finished install Moby container engine
 
  ```bash
-sudo cp ./microsoft-prod.list /etc/apt/sources.list.d/
+sudo apt-get update; \
+  sudo apt-get install moby-engine
  ```
+When you are asked **Do you want to continue Y/N** press **Y** to continue
 
-Install the Microsoft GPG public key.
- ```bash
-curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-sudo cp ./microsoft.gpg /etc/apt/trusted.gpg.d/
- ```
-
-Azure IoT Edge software packages are subject to the license terms located in each package (usr/share/doc/{package-name} or the LICENSE directory). Read the license terms prior to using a package. Your installation and use of a package constitutes your acceptance of these terms. If you do not agree with the license terms, do not use that package.
-
-**Install a Container Engine**
-Update package lists on your device.
+Next install edge runtime
 
  ```bash
-    sudo apt-get update
+sudo apt-get update; \
+  sudo apt-get install aziot-edge defender-iot-micro-agent-edge
  ```
-Install the Moby engine.
-   ```bash
-   sudo apt-get install moby-engine
-  ```
-If you want to install the most recent version of the security daemon, use the following command that also installs the latest version of the libiothsm-std package:
+
+ Once again you will be asked **Do you want to continue Y/N** press **Y** to continue
+
+Next steps you will generate a template config.toml file to connect to IoT Central.
 
  ```bash
-   sudo apt-get install iotedge
- ```
-
+   sudo cp /etc/aziot/config.toml.edge.template /etc/aziot/config.toml
+   ```
 
 
 ## Task #4 - Azure IoT Central
@@ -275,53 +270,43 @@ Your final screen should look like below **Validated**
 
 13. A new window will popup, assign a name to your device **RaspberrypiHoL** then select the template created in previous step, last click **Create**. Now your device will appear as **Registered** state
 
-14. Click on the Device, then up top click on **Connect**. A new window will pop up with the information you need to generate a connection string for your device.
+14. Click on the Device, then up top click on **Connect**. A new window will pop up with the information you need for the config.toml file in your raspberry pi.
 
 
 ![Device Template](./images/connect-device.png 'Device Template')
 
-
-15. Go to the following url: https://dpsgen.z8.web.core.windows.net/
-  Copy and Paste the values as shown below
-
-  - ID Scope -> Scope
-  - Device ID -> Device ID
-  - Primarey Key -> Device Key
-
-  Then click on **Get Connection String**
-
-![Device Template](./images/cs.png 'Device Template')
-
-
-16. Your will need to use this Connection String in your Raspberry Pi, there are multiple ways to do that from a usb drive, to an email account you can open a firefox to send this parameter or ssh the device. The easiest way is to copy the URL send it through any gmail or outlook account that you can open through firefox in the raspberry pi browser. 
-
-
-17. In the next step we will configure the connection from your device to you IoT Central application. Go back to the Terminal Window in your rasberry pi, run the following command:
+15. Go back to the raspberry pi, run the following command in the terminal
 
  ```bash
-sudo nano /etc/iotedge/config.yaml
+sudo nano /etc/aziot/config.toml
+ ```
+
+16. Use the arrow to go down to the section **DPS Provisioning with Symmetric Key**
+Uncomment the lines, removing the **#** as shown below, 8 lines needs to be uncommented, also removed the comments after the **}** clsoing the symmetric key value if any. Your file should look like they below file but with your new keys:
+
+
+  ![Firefox Access](./images/config-toml.png 'Firefox Access')
+
+Replace the Following values:
+  - Id_scope = Id Scope
+  - Registration_Id = Device ID
+  - Symmetric_key value = Primary Key
+
+Once you are done, press Ctrl+X to close the file then **Y** to overwrite the file 
+
+
+17. Then run the following command to apply and restart edge runtime:
+
+ ```bash
+ sudo iotedge config apply
+ ```
+
+18. You can run to see if the containers are deploying, first EdgeAgent should appear, then EdgeHub.
+
+ ```bash
+ sudo iotedge list
+ ```
  
-  ```
-
-18. Once in the nano editor, scroll down to **Manual Provisioning configuration using a connection string** then replace the **device_connection_string** variable wit the connection string from the step 15. To paste the connection string just use the arrows until you are in the right place, between the "" then right click the mouse and the value will paste on the file.
-
- ![Config File.](./images/config-yaml-file.png 'Config File')
-
-
-After configuring your connectivity, press **CrtL+X** to close the file and select  **Y** to save the changes
-
-19. Now restart your edge daemon
- ```bash
-sudo systemctl restart iotedge
- ```
-
-20. In a few minutes you should receive a **Running** Status after executing the following command:
-
- ```bash
-sudo iotedge list
- ```
-
-After running that command you should see EdgeHub and EdgeAgent both listed as **running**
 
 
 21. Wait a few minutes, go to your IoT Central App, click on the Device, **Raw Data** you should see the device connected sending simulated telemetry data.
@@ -375,57 +360,6 @@ These steps deploy Custom vision service. All the projects can use the same reso
 https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/getting-started-build-a-classifier
 
 
- ### **Task #2: Set up your device to take pictures**
-
-1. First we will need an Storage account to upload the images. Go to the Azure portal. Click on **+Create Resource**. Select from the list Storage Account:
-
-![Storage account](./images/storage-account-create.png 'SA Create')
-
-2. In the next window, select the Subscription and Resource Group you are using for this training. Assign a name **Visalinspection** select a region, in Reduncancy select **Locally-redundant storage LRS)**, then **Review + Create**, then **Create**.
-
-3. Once the resource is created, go to the resource, select **Containers** on the left side menu.
-
-
-![Container](./images/container.png 'SA Container')
-
-4. On the right side click on **+Create** a new window will pop up on the right, in name field type **raspberrypic** DO NOT CHANGE THIS NAME, the application is set up to run using this name otherwise you will need to go and change the code. Then click **Create**
-
-5. Now go back to your raspberry pi, open terminal and run the following commands, one by one:
-
-```linux
-pip3 install zure-cognitiveservices-vision-customvision
-```
-```linux
-pip3 install azure-iot-device
-```
-```linux
-pip3 install asyncio
-```
-```linux
-pip3 install azure-storage-blob
-```
-```linux
-sudo apt-get install fswebcam
-```
-```linux
-sudo apt install python3-tk thonny
-```
-```linux
-pip3 install matplotlib
-```
-```linux
-pip3 install board
-```
-```linux
-pip3 install RPi.GPIO
-```
-
-6. In this github, go to the folder **Files** you will find a a file named **Template** copy and paste that file in a notepad we will make changes based on your project.
-
-7. 
-
-
-
 ## Exercise #3: Deploying model and setting up alerts
 
 
@@ -463,22 +397,17 @@ pip3 install RPi.GPIO
    Identify these lines:
    
   #Config settings specific to arm64
-
   arm_64bit=1
-
   dtoverlay=dwc2
-ADD THIS LINE HERE: dtoverlay=vc4-fkms-v3d.
+**ADD THIS LINE HERE: dtoverlay=vc4-fkms-v3d.**
 
 Crtl+X Save the changes when prompted 
 
 At the end should look like this:
 
     #Config settings specific to arm64
-
     arm_64bit=1
-
-    dtoverlay=dwc2
-    
+    dtoverlay=dwc2 
     dtoverlay=vc4-fkms-v3d
 
 
@@ -486,6 +415,10 @@ At the end should look like this:
 - **sudo poweroff**
 - **sudo reboot**
 - **ip r**: to get the raspberry IP in case you need to SSH your device.
+- **ifconfig** to capture the docker ip, then go to the browser in your raspberry type that
+ip:8000 and you should see the camera streaming. 
+- **sudo iotedge system restart**
+- **sudo iotedge check**
 
 
 
