@@ -204,7 +204,7 @@ sudo apt-get update; \
 
  ```bash
 sudo apt-get update; \
-  sudo apt-get install aziot-edge defender-iot-micro-agent-edge
+  sudo apt-get install aziot-edge 
  ```
 
   Once again you will be asked **Do you want to continue Y/N** press **Y** to continue
