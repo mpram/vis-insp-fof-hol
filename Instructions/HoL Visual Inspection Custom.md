@@ -363,10 +363,10 @@ These steps deploy Custom vision service. All the projects can use the same reso
 - Classification Types: **Multilabel (Multiple tags per image**
 - Domains: **General Compact**
 
-8. Now folow the tutorial to add pictures, tag them and train the model.
+8. Now follow the tutorial to add pictures, tag them and train the model.
 https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/getting-started-build-a-classifier
 
-9. After the model is created, go to **Performance** tab, select **Export** then click in **Docker File**, a new window will open, select **Linux** version, then download. This will generate a zip file in your Download folder.  We will use these files once we set up our Development Environment. 
+9. After the model is trained, go to **Performance** tab, select **Export** then click in **Docker File**, a new window will open, select **Linux** version, then download. This will generate a zip file in your Download folder.  We will use these files in the Virtual Machine configured in advance as development environment. 
 
 **Note** If you don't see the **Export** option that means you select a different Domain than the General Compact defined above, you will need to re-do the project selecting the right domain.
 
@@ -434,6 +434,7 @@ At the end should look like this:
 ip:8000 and you should see the camera streaming. 
 - **sudo iotedge system restart**
 - **sudo iotedge check**
+- **watch sudo iotedge list**
 
 
 
