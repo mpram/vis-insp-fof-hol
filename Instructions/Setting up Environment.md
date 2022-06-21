@@ -35,6 +35,7 @@ The following requirements will be for your Raspebrry set up
   - Custom Vision
   - Azure Container Registry
   - Storage Account
+  - Virtual Machine(Dev Environment)
 
 ## Other Tools:
   - VS Code. Download from here in your laptop:
@@ -373,6 +374,7 @@ https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/
 
 
 ## Exercise #3: Deploying the machine learning model to the device.
+In the next excersice we will use a virtual machine in Azure to set up the development environment, build the solution and push it to the RPI.
 
 
 

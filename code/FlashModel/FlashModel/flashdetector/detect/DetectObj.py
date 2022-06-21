@@ -5,6 +5,7 @@ from datetime import datetime
 from PIL import Image
 from .object_detection import ObjectDetection
 from azure.iot.device import IoTHubDeviceClient, Message, IoTHubModuleClient
+from azure.storage.blob import BlobClient
 
 import os
 ospath = os.path.dirname(os.path.abspath(__file__))
@@ -13,9 +14,9 @@ MODEL_FILENAME = os.path.join(ospath,'model.pb')
 LABELS_FILENAME = os.path.join(ospath,'labels.txt')
 
 labels = None
+#YOUR Azure Storage Connection String below
+constr = "DefaultEndpointsProtocol=https;AccountName=visinspmpr;AccountKey=akXcqJCK5+3aL8AQbBJjpOZEwUBY2wgwyY2V0EMiEGzdqPMb1CswN6eI0MnHA1IQ1/Z6BQ/a4tNX+AStcI5RFQ==;EndpointSuffix=core.windows.net"
 
-#azure connection string
-# CONNECTION_STRING = ""
 
 def iothub_client_init():
     # Create an IoT Hub client
@@ -111,6 +112,12 @@ class DetectCount:
         print(min_conf_threshold)
         for i in response["predictions"]:
             if i["probability"] > min_conf_threshold:
+                PATH_TO_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),"camerapic.jpg")
+                savedstatus = cv2.imwrite(PATH_TO_FILE,frame)
+                if savedstatus:
+                    print("image saved")
+                else:
+                    print("image not saved")
                 x = int(i["boundingBox"]["left"]*width)
                 y = int(i["boundingBox"]["top"]*height)
                 w = int(i["boundingBox"]["width"]*width)
@@ -124,6 +131,14 @@ class DetectCount:
                 print( "Sending message: {}".format(msg) )
                 self.client.send_message(msg)
                 print ( "Message successfully sent" )
-        #time.sleep(5)
+                blob_name = os.path.basename(PATH_TO_FILE)
+                blob = BlobClient.from_connection_string(conn_str=constr, container_name="test", blob_name=blob_name)
+                with open(PATH_TO_FILE, "rb") as data:
+                    status = blob.upload_blob(data,overwrite=True)
+                    if status:
+                        print("upload successfull")
+                    else:
+                        print("upload failed")
+       #time.sleep(5)
         #cv2.putText(frame,str(count), (10,80), cv2.FONT_HERSHEY_SIMPLEX, 3, 255)
         return frame
