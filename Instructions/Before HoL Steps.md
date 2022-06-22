@@ -12,17 +12,18 @@ This virtual machine will be our development environment for the solution.
 2. Click on **+ Create Resource**, look for **Virtual Machine**, usually the first item in the list and click **Create**
 3. A new window will appear with multiple tabs to fill the information for that Virtual Machine:
 **Basics Tab:**
-- Subscription: Select the subscription you are using for this workshop
-- Resource Group: Select the resource group you are using for this workshop
-- Vistual Machine name: **devenv**
-- Region: **East US** or the closest to your location.
-- Avaialbility Options: **No infrastructure required**
-- Security Type: **Standard**
-- Image: **Windows 10 Pro, version 21H2 - Gen 2** if you don't see it in the list just click in **See all images**
-- Username: **devenvisinsp**
-- Password: **Visualinsp01!**
-- Public inbound ports: **None**
-- Licensing: Check, **I confirm I have an eligible windows 10 license with multi-tenant hosting**
+  - Subscription: Select the subscription you are using for this workshop
+  - Resource Group: Select the resource group you are using for this workshop
+  - Vistual Machine name: **devenv**
+  - Region: **East US** or the closest to your location.
+  - Avaialbility Options: **No infrastructure required**
+  - Security Type: **Standard**
+  - Image: **Windows 10 Pro, version 21H2 - Gen 2** if you don't see it in the list just click in **See all images**
+  - Size: **Standard_E8-4ds_v5 - 4 vcpus, 64 Gib memory**
+  - Username: **devenvisinsp**
+  - Password: **Visualinsp01!**
+  - Public inbound ports: **None**
+  - Licensing: Check, **I confirm I have an eligible windows 10 license with multi-tenant hosting**
 
 The image below will provide additional guidance:
 
@@ -48,7 +49,7 @@ If you see the warning message below, you can continue with the steps as long as
 
 ![VM](./images/vm-connect.png 'VM')
 
-Once you click Bastion, you will need to follow the steps for complete the configuration, step 1 might be already set up. In **Step 2** click on **Create Subnet**
+Once you click Bastion, you will need to follow the steps for complete the configuration, step 1 might be already set up otherwise click on **Create Azure Bastion using defaults**. In **Step 2** click on **Create Subnet**
 
 ![Bastion](./images/bastion-step2.png 'Bastion Step 2')
 
@@ -104,7 +105,7 @@ Make sure the below settings looks like below or change them false to true to lo
 6. Go to Downloads Folder, unzip it **Extract All**. 
 
 
-## **Task 3: Azure Services**
+## **Task 3: Azure Container Registry**
 
 1. Go back to Azure Portal https://ms.portal.azure.com/
 
@@ -163,7 +164,38 @@ docker login -u visinsp -p =o7ag0JfN+IZRinblhXko=PVHKZlo=fK visinsp.azurecr.io
 
  ![Stop VM](./images/stop-vm.png 'Stop VM')
 
- 10. Now you are all set to continue to the next section **HoL Visual Inspection Custom**
+ ## **Task 4: Azure Container Storage Account**
+
+ 1. Go to Azure Portal, click on **+ Create Resource** click on **Create** below **Storage Account**
+
+ ![Storage account](./images/sa-create.png 'Storage Account')
+ 
+
+ 2. A new window will open, with the basics tab to create the storage account:
+
+    - Subscription: The susbcription you are using for this workshop
+    - Resource Group: The Resource Group you are using for this workshop
+    - Storage account name: **pictures**+company
+    - Region: Choose the region close to your location/device
+    - Performance: **Standard**
+    - Redundancy: **Locally-redundant storage (LRS)**
+
+
+  ![Storage account](./images/sa-basics-tab.png 'Storage Account')
+ 
+ Click **Review + Create**, once you passed the validation, click on **Create**
+
+ 3. Once the resource is ready **Go to resource**. On the left menu select **Containers**, then click on **+ Container**:
+      - Name: **test** DO NOT CHANGE THIS NAME.
+  Then click **Create**
+
+
+  ![Storage account blob](./images/sa-create-container.png 'Storage Account blob')
+
+ 
+ 
+ 
+ Now you are all set to continue to the next section **HoL Visual Inspection Custom**
 
 
 

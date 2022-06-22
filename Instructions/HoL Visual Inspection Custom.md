@@ -103,6 +103,7 @@ For that you will insert the Samsung SSD card, 64gb into the SD Adapter inside y
 - Connect the Keyboard in one of the USB Ports
 - Connect the mouse in one of the USB Ports
 - Connect the monitor using one of the micro hdmi ports on the side of the raspberry pi and the other extreme to the monitor. 
+- Connect a LAN cable to make sure you have internet connectivity quickly.
 
 Make sure the raspberry pi is **OFF**. Once all your equipment is connected to the raspberry pi, you will insert the SSD card as shown below and then Turn **On** the power.
 
@@ -131,7 +132,7 @@ Now that all the equipment is connected and the rasbberry pi is OFF, should look
 
 ![RPI Login](./images/ubunut-login.png 'RPI Login')
 
-4. Next we will install a lightweighted version of desktop in your raspberry pi to make things easier 
+4. Next we will install a lightweighted version of desktop in your raspberry pi to make things easier considering our end user, if you feel more comfortable using PuTTY you dont need the desktop.
 
     Type the following command
 
@@ -374,9 +375,125 @@ https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/
 
 
 ## Exercise #3: Deploying the machine learning model to the device.
-In the next excersice we will use a virtual machine in Azure to set up the development environment, build the solution and push it to the RPI.
+
+During this exercise, we will use the Virtual Machine we set up in Azure as development environment to put together the solution and push it to our edge device. 
+
+1. Go to Azure Portal, search for the Virtual Machine you set up in the section **Before HoL Steps**. From the overview blade, click **START**, once ths **Status: Running** you are ready to click **Connect** then click on **Bastion** enter the credentials you set up before.
+
+2. From the custom vision portal you downloaded the machine learning model in a zip file for linux, you will extract those files and we will move only two files to the virtual machine: 
+    - **Labels.txt**
+    - **model.pb**
+
+![Files](./images/custom-vision-files.png 'Files')
+
+There are multiple ways to move the files, you can use OneDrive or an Storage Account or any storage sharing app if you can't login directly to Custom Vision and download directly from there inside the virtual machine.
+
+3. Once you move the files, you will replace these files in the **detect** folder as shown below:
+
+![Files](./images/replace-files.png 'Files')
+
+4. Open Visual Studio Code, select the **Code** Folder to open.
+
+5. Check that Docker Desktop is running, you should see your user at the top and the green bar on the bottom left indicates that is running.
+
+![Docker login](./images/docker-login.png 'Docker login')
 
 
+6. Login to your Container Registry using the Terminal, this step is explained above, follow the same steps and make sure you see **Login Succeeded**
+
+7. In the **Explorer** panel on the left side, look for the file **DetectObj.py** in line #18, you will replace the connection string wiht yours. To get yours go to the storage account you created in Azure portal in the section **Before HoL steps**. Select **Access Keys** and copy the **Connection String** 
+
+
+![SA](./images/sa-access.png 'SA')
+
+
+8. In Visual Studio Code, go to the DetectObject.py and replace the connection string in line #18 inside the quotes ""
+
+![replacing](./images/replace-line-18.png 'replacing')
+
+**NOTE**: If you change the name of the container in the storage account from **test** to something else, you will need to go to line #135 and change the **container_name**
+
+9. Click on the file **DetectObject.py** on the right side and press **Crtl+S** to make sure you are saving those changes.
+
+
+10. Go to the top menu, select **Terminal** then **New Terminal** copy the below command and click enter. Don't forget the dot :)
+
+```linux
+docker  build -t rpi_mycontainer .
+```
+
+If you need to run this build many times, make sure you delete the image before the build with the below command: 
+
+docker rmi rpi_mycontainer 
+
+
+**NOTE**This Build will take around 3hours, here we do a break and we will regroup the day after
+
+**Day After**
+11. Now that the solution is Build, we will tag it replacing in this command your container registry user, run it in the terminal also:
+
+
+```linux
+docker tag rpi_mycontainer YOUR-USER.azurecr.io/rpi_mycontainer:lastest
+```
+
+In my example looks like the below:
+
+```linux
+docker tag rpi_mycontainer containervi.azurecr.io/rpi_mycontainer:latest
+```
+
+12. Now we are ready to push it to Azure Container Registry with the below command, once again, replace YOUR-USER with your actual user.
+
+```linux
+docker push YOUR-USER.azurecr.io/rpi_mycontainer:latest
+```
+
+In my example, looks like below: 
+
+```linux
+docker push containervi.azurecr.io/rpi_mycontainer:latest
+```
+
+13. Go to Azure Portal, look for  your **Container registry**, click on repositories, now you should be able to see your solution published:
+
+![repository](./images/acr-repository.png 'repository')
+
+14. In Visual Studio Code click on the file **deployment.json on the left panel, we will make some changes on the right side panel
+Look fo the following lines: 
+#13 **username**: YOUR-USER_HERE(this is the container registry user)
+#14 **password**:YOUR-PASS-HERE(this is the container registry password)
+#15 **address**:YOUR-LOGIN-SERVER(this is the container registry login server)
+
+#45 **"image": "YOUR-USER-HERE.azurecr.io/rpi_mycontainer:latest",**
+
+Now save the changes pressing **Ctrl+S**. Copy the content in this file, select all and copy.
+
+15. Go to IoT central App, click on **Device Templates**, click on the template you have on the right. On the top click on **Version**, assign a name such as **template-v2**, then **Create**.
+
+16. Click on **Edit Manifest**, remove the content and paste the content from Visual Studio Code from the file deployment.json. **Save**, close it with the **X** on the right corner.
+
+17. Add capabilities, click **+ Add capability**:
+  - Display Name: **data**
+  - Name: **data**
+  - Capability type: **Telemetry**
+  - Semantic Type: **none**
+
+On the top Menu, select **Publish**
+
+15. Go to **Devices on the left** select your device on the right, click on **Manage Template**, **Assign Template**, select the template you just created
+
+15. Restart the raspberry pi to trigger iotedge runtime to check the new deployment manifest. In the Modules tabs you can see the status of the modules during the deployment, will take a few minutes until they are all in **Running** mode.
+
+You can also check inside the raspberry pi opening a terminal and running:
+```linux
+**watch sudo iotedge list**
+```
+16. At this point the camera should be connected through USB to the RPI should be infront of the object you took the pictures to train your model to start streaming telemetry data.
+
+17. Check telemetry
+18. Check Storage accounts
+19. Check streaming. 
 
 
 
