@@ -79,24 +79,7 @@ After a few minutes you will be able to enter your credentials, the same credent
     The download will start, once is completed, check your **Downloads** folder in the VM,right click in the installation file and **Run as Administrator**. After the installation you will ask to restart the virtual machine. After restart you will be ask to **Accept the terms** for Docker. You might have a warning sign to dowloand **WSL2 Linux Kernel update packages for x64 machines**, follow the link, download the package and install it.
 
     Open Docker Dekstop, click on **Sign in**, if you have a docker account, just login, otherwise create a new one, select **Personal** and click on **Free**.
-  Open Powersheel "Run as Administrator" and run the following commands, you might need to restart in between:
-
-    ```linux
-    Enable-WindowsOptionalFeature -Online -FeatureName $("Microsoft-Hyper-V", "Containers") -All
-    ```
-    ```linux
-    Enable-WindowsOptionalFeature -Online -FeatureName $("VirtualMachinePlatform", "Microsoft-Windows-Subsystem-Linux")
-    ```
-
-    
-Open with notepad settings.json located in C:\\User\AppData\Roaming\Docker
-
-Make sure the below settings looks like below or change them false to true to look like that:
- **"wslEngineEnabled": true**
- "**"useWindowsContainers": true**
-
- At this point you should be able to login and see the Docker Dekstop Started succesfully. 
-
+  
 
  5. In this github, go to the main folder, click on **Code** and then **Download ZIP**.
 
