@@ -147,7 +147,7 @@ docker login -u visinsp -p =o7ag0JfN+IZRinblhXko=PVHKZlo=fK visinsp.azurecr.io
 
  ![Stop VM](./images/stop-vm.png 'Stop VM')
 
- ## **Task 4: Azure Container Storage Account**
+ ## **Task 4: Azure Storage Account**
 
  1. Go to Azure Portal, click on **+ Create Resource** click on **Create** below **Storage Account**
 
