@@ -442,6 +442,8 @@ In my example looks like the below:
 ```linux
 docker tag rpi_mycontainer containervi.azurecr.io/rpi_mycontainer:latest
 ```
+![Tag repo](./images/docker-tag.png 'Tag repo')
+
 
 12. Now we are ready to push it to Azure Container Registry with the below command, once again, replace YOUR-USER with your actual user.
 
@@ -454,10 +456,19 @@ In my example, looks like below:
 ```linux
 docker push containervi.azurecr.io/rpi_mycontainer:latest
 ```
+![Tag repo](./images/push-container.png 'Tag repo')
 
-13. Go to Azure Portal, look for  your **Container registry**, click on repositories, now you should be able to see your solution published:
+The above command will take just a few minutes.
+
+13. Go to Azure Portal, look for  your **Container registry**, click on repositories, now you should be able to see your repository published:
 
 ![repository](./images/acr-repository.png 'repository')
+
+
+If you click in the repository you will see the version just created and the url to your repository:
+
+![repository](./images/container-latest.png 'repository')
+
 
 14. In Visual Studio Code click on the file **deployment.json on the left panel, we will make some changes on the right side panel
 Look fo the following lines: 
@@ -465,11 +476,22 @@ Look fo the following lines:
 #14 **password**:YOUR-PASS-HERE(this is the container registry password)
 #15 **address**:YOUR-LOGIN-SERVER(this is the container registry login server)
 
+![Deployment](./images/deployment-change.png 'Deployment')
+
+
 #45 **"image": "YOUR-USER-HERE.azurecr.io/rpi_mycontainer:latest",**
+
+![Deployment](./images/deployment-45.png 'Deployment')
+
+
+
 
 Now save the changes pressing **Ctrl+S**. Copy the content in this file, select all and copy.
 
-15. Go to IoT central App, click on **Device Templates**, click on the template you have on the right. On the top click on **Version**, assign a name such as **template-v2**, then **Create**.
+15. Go to IoT central App, click on **Device Templates**, click on the template you have on the right. On the top click on **Version**, assign a name such as **Raspberrypi-v2**, then **Create**.
+
+![New Template](./images/new-template.png 'New Template')
+
 
 16. Click on **Edit Manifest**, remove the content and paste the content from Visual Studio Code from the file deployment.json. **Save**, close it with the **X** on the right corner.
 
@@ -479,7 +501,9 @@ Now save the changes pressing **Ctrl+S**. Copy the content in this file, select 
   - Capability type: **Telemetry**
   - Semantic Type: **none**
 
-On the top Menu, select **Publish**
+**Save** the new capability, and then on the top Menu, select **Publish**
+
+![Add Capability](./images/add-capability.png 'Add Capability')
 
 15. Go to **Devices on the left** select your device on the right, click on **Manage Template**, **Assign Template**, select the template you just created
 
