@@ -5,12 +5,12 @@ This Visual Inspections workshop is oriented for Factory Floor users, during thi
 This is not a production ready solution. It was built with the intention of learning and accelerate the Digital Transformation in factory Floors. 
 
 
-This workshop doesnt not require developer skills, you will learn by doing supported for Microsoft Cloud Solution Architects along the way. 
+This accelerator doesn't not require developer skills, you will learn by doing supported for Microsoft Cloud Solution Architects along the way. 
 
 
 **Delivery:**
 
-Pre session:
+Pre-session:
 
 - Identify use case for the workshop in your factory floor and collect pictures with your cell phone so we can use it to train the model.
 
@@ -19,16 +19,21 @@ Pre session:
 - Azure Access, validate that you have access to an Azure Subscription with the right priviledges to create some resources you will need for the session.
 
 **Day #1:**
-- Collect hte pictures of your use case.
+- Collect the pictures of your use case.
 - Complete the session Before HoL
 
 
 **Day #2:**
-- Custom vision portal
-- Reach the Build solution in Visual Code.
+- Set up Custom vision portal and your project, tag the images and train the model.
+- Complete all the steps until trigger the Build solution in Visual Code, you will leave it running at the end of the day to continue the following.
 
 **Day #3:**
-- After the Build, complete deployment and test it with your camera end to end.
+- After the Build is complete, you will push the solution to the device and test it with your camera connected end to end, you will see the predictions and the picture the camera is taking and analyzing.
 - Discuss path to production.
+
+
+To start your journey you can continue to the section **Instructions/Before HoL**section.
+
+**Contact info: visualinspections@microsoft.com**
 
 

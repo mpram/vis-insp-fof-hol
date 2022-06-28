@@ -3,8 +3,10 @@
 This guide will help any person working in the factory floor set up their first automated visual inspection project. The steps below should be done before attending the workshop to make sure you have the right priviledges in Azure for your solution
 
 ## Content:
-- [Hardware Requirements](#hardware-requirements)
-- [Exercise #1: Setting up your environment]
+- [Task 1:  Virtual Machine](#Task-1-Virtual-Machine)
+- [Task 2:  Set up Virtual Machine](#Task-2-Set-up-Virtual-Machine)
+- [Task 3:  Azure Container Registry](#Task-3-Azure-Container-Registry)
+- [Task 4:  Azure Storage Account](#Task-4-Azure-Storage-Account)
 
 ## **Task 1:  Virtual Machine**
 This virtual machine will be our development environment for the solution. 
