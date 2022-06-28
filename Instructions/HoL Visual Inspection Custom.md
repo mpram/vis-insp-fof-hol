@@ -1,6 +1,8 @@
 # Visual Inspections, Factory Floor.
 
-This guide will help any person working in the factory floor set up their first automated visual inspection project.
+This accelerator will help any person working in the factory floor set up their first automated visual inspection project.
+
+Before you start this section, it is important you completed the steps on **Instructions/Before Hol Steps**
 
 ## Content:
 - [Hardware Requirements](#hardware-requirements)
