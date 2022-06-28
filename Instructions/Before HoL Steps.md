@@ -1,6 +1,6 @@
 # Visual Inspections, Factory Floor.
 
-This guide will help any person working in the factory floor set up their first automated visual inspection project. The steps below should be done before attending the workshop to make sure you have the right priviledges in Azure for your solution
+This accelerator will help any person working in the factory floor to set up their first automated visual inspection project based on their custom scenario. The steps below should be done before attending the workshop to make sure you have the right priviledges in Azure for your solution.
 
 ## Content:
 - [Task 1:  Virtual Machine](#Task-1-Virtual-Machine)
@@ -18,7 +18,7 @@ This virtual machine will be our development environment for the solution.
   - Resource Group: Select the resource group you are using for this workshop
   - Vistual Machine name: **devenv**
   - Region: **East US** or the closest to your location.
-  - Avaialbility Options: **No infrastructure required**
+  - Availability Options: **No infrastructure required**
   - Security Type: **Standard**
   - Image: **Windows 10 Pro, version 21H2 - Gen 2** if you don't see it in the list just click in **See all images**
   - Size: **Standard_E8-4ds_v5 - 4 vcpus, 64 Gib memory**
@@ -31,7 +31,7 @@ The image below will provide additional guidance:
 
 ![Create VM](./images/create-vm.png 'Create VM')
 
-If you don't find the right size for the virtual machine, click on **See all sizes** in the **Size** Section, a new window will open, search for **d16** and select the appropiated as shown below. The cost of the VM considered the whole month, however we will use it just for a few hours and then we will deallocated, so will be significantly lower.
+If you don't find the right size for the virtual machine, click on **See all sizes** in the **Size** Section, a new window will open, search for **d16** and select the appropiated as shown below. The cost of the VM it is considering the whole month, however we will use it just for a few hours and then we will deallocated, so will be significantly lower.
 
 ![Find the right sizing](./images/vm-size.png 'Find the right sizing VM')
 
@@ -78,12 +78,12 @@ After a few minutes you will be able to enter your credentials, the same credent
 
     ![Docker](./images/docker-windows.png 'Docker')
 
-    The download will start, once is completed, check your **Downloads** folder in the VM,right click in the installation file and **Run as Administrator**. After the installation you will ask to restart the virtual machine. After restart you will be ask to **Accept the terms** for Docker. You might have a warning sign to dowloand **WSL2 Linux Kernel update packages for x64 machines**, follow the link, download the package and install it.
+    The download will start, once is completed, check your **Downloads** folder in the VM,right click in the installation file and **Run as Administrator**. After the installation you will ask to restart the virtual machine. Once restarted you will be ask to **Accept the terms** for Docker. You might have a warning sign to dowloand **WSL2 Linux Kernel update packages for x64 machines**, follow the link, download the package and install it.
 
     Open Docker Dekstop, click on **Sign in**, if you have a docker account, just login, otherwise create a new one, select **Personal** and click on **Free**.
   
 
- 5. In this github, go to the main folder, click on **Code** and then **Download ZIP**.
+ 5. Open a browser inside the virtual machine, go to this github, go to the main folder, click on **Code** and then **Download ZIP**.
 
 ![Github](./images/github-download.png 'Github')
 
@@ -97,9 +97,9 @@ After a few minutes you will be able to enter your credentials, the same credent
 2. Click on **"+ Create Resource"**, search for **Container Registry**, then click **Create**.
 
 - Subscription: Select the subscription you have assigned for this workshop.
-- Resource Group:The resource group you selected for this workshop
+- Resource Group: The resource group you selected for this workshop
 - Name: **visinsp**+companyname.
-- SKU: Standard
+- SKU: **Standard**
 
 ![ACR](./images/container-registry.png 'ACR')
 
@@ -113,9 +113,7 @@ In a notepad copy the following values:
 
   ![ACR](./images/repo-info.png 'ACR')
 
-```linux
-docker login -u visinsp -p =o7ag0JfN+IZRinblhXko=PVHKZlo=fK visinsp.azurecr.io
-```
+
 
 4. Test that you can connect to the Container REgistry using the credentials above, copy this command and replace the values for yours 
 
@@ -129,7 +127,7 @@ In my example the final command will look like the below:
 docker login -u visinsp -p =o7ag0JfN+IZRinblhXko=PVHKZlo=fK visinsp.azurecr.io
 ```
 
-5. Open Visual Studio Code, you will be prompted to **Open a Folder**, select from Downloads, the extracted github material and select the **Code** Folder.
+5. Back inside the Virtual Machine, Open Visual Studio Code, you will be prompted to **Open a Folder**, select from Downloads, the extracted github material and select the **Code** Folder.
 
 6. Go to Terminal on the top menu, and click **New Terminal**
 
