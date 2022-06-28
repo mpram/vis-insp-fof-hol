@@ -463,7 +463,7 @@ docker push containervi.azurecr.io/rpi_mycontainer:latest
 
 The above command will take just a few minutes.
 
-13. Go to Azure Portal, look for  your **Container registry**, click on repositories, now you should be able to see your repository published:
+13. Once is completed go to Azure Portal, look for  your **Container registry**, click on repositories, now you should be able to see your repository published:
 
 ![repository](./images/acr-repository.png 'repository')
 
@@ -473,16 +473,18 @@ If you click in the repository you will see the version just created and the url
 ![repository](./images/container-latest.png 'repository')
 
 
-14. In Visual Studio Code click on the file **deployment.json on the left panel, we will make some changes on the right side panel
+14. In Visual Studio Code click on the file **deployment.json** on the left panel, we will make some changes on the right side panel
 Look fo the following lines: 
-#13 **username**: YOUR-USER_HERE(this is the container registry user)
-#14 **password**:YOUR-PASS-HERE(this is the container registry password)
-#15 **address**:YOUR-LOGIN-SERVER(this is the container registry login server)
+  - #13 **username**: YOUR-USER_HERE(this is the container registry user).
+
+  - #14 **password**:YOUR-PASS-HERE(this is the container registry password)
+
+  - #15 **address**:YOUR-LOGIN-SERVER(this is the container registry login server)
 
 ![Deployment](./images/deployment-change.png 'Deployment')
 
 
-#45 **"image": "YOUR-USER-HERE.azurecr.io/rpi_mycontainer:latest",**
+  - #45 **"image": "YOUR-USER-HERE.azurecr.io/rpi_mycontainer:latest",**
 
 ![Deployment](./images/deployment-45.png 'Deployment')
 
@@ -508,7 +510,7 @@ Now save the changes pressing **Ctrl+S**. Copy the content in this file, select 
 
 ![Add Capability](./images/add-capability.png 'Add Capability')
 
-15. Go to **Devices on the left** select your device on the right, click on **Manage Template**, **Assign Template**, select the template you just created
+15. Make sure your raspberry pi is connected to internet, the camera is also connected and infront of the items you use to train the Custom Vision Model, we are ready to test E2E your model here. Go to **Devices on the left** select your device on the right, click on **Manage Template**, then **Assign Template**, select the template you just created.
 
 15. Restart the raspberry pi to trigger iotedge runtime to check the new deployment manifest. In the Modules tabs you can see the status of the modules during the deployment, will take a few minutes until they are all in **Running** mode.
 
@@ -516,11 +518,29 @@ You can also check inside the raspberry pi opening a terminal and running:
 ```linux
 **watch sudo iotedge list**
 ```
-16. At this point the camera should be connected through USB to the RPI should be infront of the object you took the pictures to train your model to start streaming telemetry data.
+16. At this point the camera should be connected through USB to the RPI should be infront of the object you took the pictures to train your model to start streaming telemetry data. Make sure your camera is ON. After a few minutes of the modules all running you should start checking your data.
 
-17. Check telemetry
-18. Check Storage accounts
-19. Check streaming. 
+
+![Modules](./images/iot-central-modules-running.png 'Modules')
+
+
+17. Check telemetry, in IoT Central go to the tab **Raw Data** you should see the telemetry from your device coming through, in my case I trained with Batman, the character :) so I am successfully predicting Batman is infron of my camera with a confidence level of 94.29%. In your case you should see your item you use to train the model and a confidence level, this number will vary based on the # of pictures, lights, training and background. At this point you have a clear idea how solutions end to end works for Visual Inspections! 
+
+![Modules](./images/telemetry.png 'Modules')
+
+18. Check Storage account, in this storage account we are sending the latest picture taken from the camera is overwritting the picture every second, so if you change the elements infron of the camera you will see different pictures, however we are always replacing to avoid having 1000s of pictures very quickly.
+
+19. Go To Azure, click on the Storage Account you created before, click in **Containers** on the left menu and select **test** container, there you should see the below file:
+
+![Modules](./images/pics.png 'Modules')
+
+
+20. Download the File to see what exactly the camera is seeing.
+
+21. The camera is streaming inside the RPI, however you don't have enough resources in the RPI to see a live streaming, remember is an small computer. So you can check the streaming but after a few second the RPI freeze and you need to restart.
+
+22. To do that, in the RPI open a terminal and run the following command:
+
 
 
 
