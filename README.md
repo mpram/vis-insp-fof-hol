@@ -61,14 +61,14 @@ The following requirements will be for your Raspebrry set up
   - Virtual Machine(Dev Environment)
 
 ## 3. Other Tools:
-  - VS Code. Download from here in your laptop:
+  - VS Code. We will download it inside the Virtual Machine
   https://code.visualstudio.com/download
-  - Docker Desktop personal download: https://www.docker.com/products/personal/
+  - Docker Desktop personal. We will download it inside the Virtual Machine: https://www.docker.com/products/personal/
 
 
 
 
-To start your journey you can continue to the section **Instructions/Before HoL**section.
+To start your journey you can continue to the section **Instructions/Before HoL** section.
 
 **Contact info: visualinspections@microsoft.com**
 
