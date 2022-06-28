@@ -40,9 +40,9 @@ The following requirements will be for your Raspebrry set up
   - Virtual Machine(Dev Environment)
 
 ## Other Tools:
-  - VS Code. Download from here in your laptop:
+  - VS Code. We will download it inside the Virtual Machine
   https://code.visualstudio.com/download
-  - Docker Desktop personal download: https://www.docker.com/products/personal/
+  - Docker Desktop personal. We will download it inside the Virtual Machine: https://www.docker.com/products/personal/
 
 
 All the items above will be used during your raspberry pi set up. On addition to that list, you will need a laptop or computer with access to internet and **SD Adapter for MicroSD** to install the OS for your SSD  card which will be inserted in your raspberry pi, your laptop should have the following entrance as show in the picture below:
