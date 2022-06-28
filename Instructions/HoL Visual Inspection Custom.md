@@ -10,6 +10,8 @@ Before you start this section, it is important you completed the steps on **Inst
 - [Exercise #2: Developing Machine Learning Model in Custom Vision](#Exercise-2-Developing-Machine-Learning-Model-in-Custom-Vision)
 
 - [Exercise #3: Deploying the machine learning model to the device](#Exercise-3-Deploying-the-machine-learning-model-to-the-device)
+
+- [Exercise #4: Delete Resources](#Exercise-4-delete-resources)
 - [Troubleshooting](#troubleshooting)
 
 ## Hardware requirements:
@@ -593,6 +595,14 @@ sudo docker inspect YOU-ID-HERE
 25. Now, go down to the section **Networksettings**, then **Networks** then copy the **IPAddress** in my example is **172.18.0.3**, with that ip go to Firefox within the raspberry pi and go to **YOUR-IP:8000), now you should see the live streaming jsut for a few seconds/minutes. 
 
 ![Modules](./images/docker-ip.png 'Modules')
+
+Before you go, please take 5min to send us your feedback: 
+
+https://forms.office.com/r/swW9Y1a05G
+
+## Exercise #4: Delete Resources
+
+At this point you can delete all the resources, if you need to keep them running to continue training your peers or share the accelerator across you can keep the resources running, however we recomment to **STOP** the Virtual Machine to not incur in additional cost if you are not going to rebuild the solution. The steps to stop the VM are detailed in the section **Before HoL Steps**, Task 1, step **#9**
 
 ## Troubleshooting
 
