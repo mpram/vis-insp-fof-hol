@@ -168,6 +168,33 @@ Press enter, once the raspberry pi turn on again you will see the new dekstop in
 
 Login with the credentials you set up before, in this lab we are using **Visual01!** as pasword.
 
+Open a terminal in the raspberry pi, and run the following command:
+
+   ```linux
+  sudo nano /boot/firmware/config.txt
+   ```
+  Identify these lines:
+   
+  #Config settings specific to arm64
+  arm_64bit=1
+  dtoverlay=dwc2
+
+  **ADD THE BELOW LINE HERE**
+
+
+ **dtoverlay=vc4-fkms-v3d.**
+
+Crtl+X Save the changes when prompted 
+
+At the end should look like this:
+
+    #Config settings specific to arm64
+    arm_64bit=1
+    dtoverlay=dwc2 
+    dtoverlay=vc4-fkms-v3d
+
+  Now **Restart** your raspberry pi. The above step will allow you to use the display monitor without freezing.
+  
 
 7. Ideally your raspberry pi is connected to a LAN cable already and you have internet if so you can skip this step, otherwise set up the wifi user and password on the top right corner. click on networks, find yours and set up properly.
 
