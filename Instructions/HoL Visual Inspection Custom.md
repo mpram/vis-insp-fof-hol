@@ -9,11 +9,11 @@ Before you start this section, it is important you completed the steps on **Inst
 - [Exercise #1: Setting up your environment](#Exercise-1-Setting-up-your-environment)
 - [Exercise #2: Developing Machine Learning Model in Custom Vision](#Exercise-2-Developing-Machine-Learning-Model-in-Custom-Vision)
 
-- [Exercise #3: Deploying model and setting up alerts](#Exercise-3-Deploying-model-and-setting-up-alerts)
+- [Exercise #3: Deploying the machine learning model to the device](#Exercise-3-Deploying-the-machine-learning-model-to-the-device)
 - [Troubleshooting](#troubleshooting)
 
 ## Hardware requirements:
-The following requirements will be for your Raspebrry set up
+The following requirements will be for your Raspberry set up
 
 - <a href="https://www.amazon.com/Raspberry-Pi-Computer-Suitable-Workstation/dp/B0899VXM8F/ref=sr_1_3?keywords=raspberry+pi+4+8gb&qid=1647631122&sprefix=raspbe%2Caps%2C299&sr=8-3">Raspberry Pi 4</a>
 
@@ -168,7 +168,7 @@ Press enter, once the raspberry pi turn on again you will see the new dekstop in
 
 Login with the credentials you set up before, in this lab we are using **Visual01!** as pasword.
 
-Open a terminal in the raspberry pi, and run the following command:
+Open a terminal in the raspberry pi, and run the following command, to see where the terminal is, see below the **step 9**
 
    ```linux
   sudo nano /boot/firmware/config.txt
@@ -312,7 +312,7 @@ Your final screen should look like below **Validated**
 sudo nano /etc/aziot/config.toml
  ```
 
-16. Use the arrow to go down to the section **DPS Provisioning with Symmetric Key**
+16. Use the arrow to go down to the section **[provisioning] source=dps**
 Uncomment the lines, removing the **#** as shown below, 8 lines needs to be uncommented, also removed the comments after the **}** closing the symmetric key value if any. Your file should look like similar to my file below but with your new keys:
 
 
@@ -614,7 +614,7 @@ sudo docker inspect YOU-ID-HERE
     Replace SSID-NAME-HERE and PASSWORD-HERE with your SSID network name and password. **Dhcp4:true** will enable static IP to your device.
 
     After the changes, run:
-    
+
     ```bash
     sudo netplan apply
     ```
