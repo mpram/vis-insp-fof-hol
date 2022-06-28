@@ -539,10 +539,17 @@ Now save the changes pressing **Ctrl+S**. Copy the content in this file, select 
 
 15. Make sure your raspberry pi is connected to internet, the camera is also connected and infront of the items you use to train the Custom Vision Model, we are ready to test E2E your model here. Go to **Devices on the left** select your device on the right, click on **Manage Template**, then **Assign Template**, select the template you just created.
 
-15. Restart the raspberry pi to trigger iotedge runtime to check the new deployment manifest. In the Modules tabs you can see the status of the modules during the deployment, will take a few minutes until they are all in **Running** mode.
+15. Restart the raspberry pi to trigger iotedge runtime to check the new deployment manifest. In the Modules tabs you can see the status of the modules during the deployment, will take a few minutes until they are all in **Running** mode. 
+
+You can for the IoT Edge Runtime restart, by openning a terminal and running the following command:
+
+ ```bash
+ sudo iotedge config apply
+ ```
+
 
 You can also check inside the raspberry pi opening a terminal and running:
-```linux
+```bash
 **watch sudo iotedge list**
 ```
 16. At this point the camera should be connected through USB to the RPI should be infront of the object you took the pictures to train your model to start streaming telemetry data. Make sure your camera is ON. After a few minutes of the modules all running you should start checking your data.
@@ -607,7 +614,8 @@ sudo docker inspect YOU-ID-HERE
     Replace SSID-NAME-HERE and PASSWORD-HERE with your SSID network name and password. **Dhcp4:true** will enable static IP to your device.
 
     After the changes, run:
-    ```linux
+    
+    ```bash
     sudo netplan apply
     ```
 
