@@ -45,13 +45,13 @@ The following requirements will be for your Raspebrry set up
   - Docker Desktop personal. We will download it inside the Virtual Machine: https://www.docker.com/products/personal/
 
 
-All the items above will be used during your raspberry pi set up. On addition to that list, you will need a laptop or computer with access to internet and **SD Adapter for MicroSD** to install the OS for your SSD  card which will be inserted in your raspberry pi, your laptop should have the following entrance as show in the picture below:
+All the items above will be used during your raspberry pi set up. On addition to that list, you will need a laptop or computer with access to internet and **SD Adapter for MicroSD** to install the OS for your SSD  card which will be inserted in your raspberry pi, your laptop should have the following entrance as shown in the picture below:
 
 ![Laptop](./images/laptop-ssd-entry.png 'Laptop')
 
 ## Architecture Diagram
 
-This workshop will follow the below architecture, in the course of a few sessions will be implementing a machine learning model developed during the training analyzing pictures in real time and pushing alerts to employees when the picture shows the anomalies the client defined as use case.
+This workshop will follow the below architecture, in the course of a few sessions will be implementing a machine learning model developed during the training analyzing pictures in real time and pushing alerts to employees when the picture shows the anomalies the client defined as use case. Of course you can change from IoT Central to IoT Hub but those steps are not documented in this github. Power Apps, Power BI and SQL DBs will be optional that will provide an idea for future extensions.
 
 ![Architecture](./images/architecture.png 'Architecture')
 
@@ -169,12 +169,12 @@ Press enter, once the raspberry pi turn on again you will see the new dekstop in
 Login with the credentials you set up before, in this lab we are using **Visual01!** as pasword.
 
 
-7. Set up the wifi user and password on the top right corner. click on networks, find yours and set up properly.
+7. Ideally your raspberry pi is connected to a LAN cable already and you have internet if so you can skip this step, otherwise set up the wifi user and password on the top right corner. click on networks, find yours and set up properly.
 
 ![wifi Login](./images/wifisetup.png 'Wifi login')
 
 
-8. Open Firefox so now you can copy and paste the commands to install IoT Edge Runtinme
+8. Open Firefox so now you can copy and paste the commands to install IoT Edge Runtinme from this github page.
 
 ![Firefox Access](./images/firefox-access.png 'Firefox Access')
 
@@ -188,7 +188,7 @@ Login with the credentials you set up before, in this lab we are using **Visual0
 
 ## Task 3: Setting up: IoT Edge Runtime
 
-1. Install the repository configuration that matches your device operating system.
+1. Run the following command in the terminal:
 
   ```bash
 wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
