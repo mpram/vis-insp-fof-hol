@@ -286,7 +286,7 @@ sudo nano /etc/aziot/config.toml
  ```
 
 16. Use the arrow to go down to the section **DPS Provisioning with Symmetric Key**
-Uncomment the lines, removing the **#** as shown below, 8 lines needs to be uncommented, also removed the comments after the **}** clsoing the symmetric key value if any. Your file should look like they below file but with your new keys:
+Uncomment the lines, removing the **#** as shown below, 8 lines needs to be uncommented, also removed the comments after the **}** closing the symmetric key value if any. Your file should look like similar to my file below but with your new keys:
 
 
   ![Firefox Access](./images/config-toml.png 'Firefox Access')
@@ -322,7 +322,7 @@ Once you are done, press Ctrl+X to close the file then **Y** to overwrite the fi
 
 ### **Task #1: Custom Vision Project**
 
-** Pre Work, collect pictures of the business case previous to this session.
+**Pre Work, collect pictures of the business case previous to this session.**
 
 1. To use the Custom Vision Service you will need to create Custom Vision Training and Prediction resources in Azure. To do so in the Azure portal, go to  Create Custom Vision page to create both a Training and Prediction resource. Select region and provide appropriate resource name and select Standard Tier for both training and predictions. Click Next.
 
@@ -340,7 +340,7 @@ Once you are done, press Ctrl+X to close the file then **Y** to overwrite the fi
 
 ![Custom Vision](./images/create-cv.png 'Create')
 
-These steps deploy Custom vision service. All the projects can use the same resource, or you can also deploy individual custom vision resource per each project.
+These steps will deploy a Custom vision service. All the projects can use the same resource, or you can also deploy individual custom vision resource per each project.
 
 4. After the deployment is successful  we need to make sure that all the people working on the project has correct access assigned to work with the resource. Go the custom vision resource page and select **Access control(IAM)**.
 
@@ -380,7 +380,7 @@ https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/
 
 During this exercise, we will use the Virtual Machine we set up in Azure as development environment to put together the solution and push it to our edge device. 
 
-1. Go to Azure Portal, search for the Virtual Machine you set up in the section **Before HoL Steps**. From the overview blade, click **START**, once ths **Status: Running** you are ready to click **Connect** then click on **Bastion** enter the credentials you set up before.
+1. Go to Azure Portal, search for the Virtual Machine you set up in the section **Before HoL Steps**. From the overview blade, click **START**, once the **Status: Running** you are ready to click **Connect** then click on **Bastion** enter the credentials you set up before.
 
 2. From the custom vision portal you downloaded the machine learning model in a zip file for linux, you will extract those files and we will move only two files to the virtual machine: 
     - **Labels.txt**
@@ -429,14 +429,15 @@ If you need to run this build many times, make sure you delete the image before 
 docker rmi rpi_mycontainer 
 
 
-**NOTE**This Build will take around 3hours, here we do a break and we will regroup the day after
+**NOTE** This Build will take around 3 hours, here we do a break and we will regroup the day after
 
 **Day After**
-11. Now that the solution is Build, we will tag it replacing in this command your container registry user, run it in the terminal also:
+
+11. Now that the solution is Built, we will tag it replacing in this command your container registry user, run it in the terminal also:
 
 
 ```linux
-docker tag rpi_mycontainer YOUR-USER.azurecr.io/rpi_mycontainer:lastest
+docker tag rpi_mycontainer YOUR-USER.azurecr.io/rpi_mycontainer:latest
 ```
 
 In my example looks like the below:
