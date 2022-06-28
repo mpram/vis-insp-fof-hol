@@ -7,6 +7,8 @@ This is not a production ready solution. It was built with the intention of lear
 
 This accelerator doesn't not require developer skills, you will learn by doing supported for Microsoft Cloud Solution Architects along the way. 
 
+To know more about this accelerator, download the file **Visual Inspections for Factory Floor.pdf** in the **Instructions** folder in this repository.
+
 
 **Delivery:**
 
