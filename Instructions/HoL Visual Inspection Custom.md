@@ -537,12 +537,28 @@ You can also check inside the raspberry pi opening a terminal and running:
 
 20. Download the File to see what exactly the camera is seeing.
 
-21. The camera is streaming inside the RPI, however you don't have enough resources in the RPI to see a live streaming, remember is an small computer. So you can check the streaming but after a few second the RPI freeze and you need to restart.
+21. The camera is streaming inside the RPI, in the port 8000, however you don't have enough resources in the RPI to see a live streaming, remember is an small computer. So you can check the streaming but after a few second the RPI freeze and you need to restart.
 
-22. To do that, in the RPI open a terminal and run the following command:
+22. To do that, in the RPI open a terminal and run the following command to 
 
+```linux
+sudo docker ps
+```
+23. Copy the ID of the module rpi_mycontainer
 
+![Modules](./images/docker-ps.png 'Modules')
 
+24. Run the following command using the ID you copy from your previous step.
+
+```linux
+sudo docker inspect YOU-ID-HERE
+```
+
+![Modules](./images/docker-inspect.png 'Modules')
+
+25. Now, go down to the section **Networksettings**, then **Networks** then copy the **IPAddress** in my example is **172.18.0.3**, with that ip go to Firefox within the raspberry pi and go to **YOUR-IP:8000), now you should see the live streaming jsut for a few seconds/minutes. 
+
+![Modules](./images/docker-ip.png 'Modules')
 
 ## Troubleshooting
 
