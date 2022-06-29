@@ -596,6 +596,8 @@ sudo docker inspect YOU-ID-HERE
 
 ![Modules](./images/docker-ip.png 'Modules')
 
+## Feedback:
+ 
 Before you go, please take 5min to send us your feedback: 
 
 https://forms.office.com/r/swW9Y1a05G
