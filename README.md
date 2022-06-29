@@ -22,11 +22,11 @@ Pre-session:
 
 **Day #1:**
 - Collect the pictures of your use case.
-- Complete the session Before HoL
+- Complete the section **Before HoL Steps**
 
 
 **Day #2:**
-- Set up Custom vision portal and your project, tag the images and train the model.
+- Complete the steps in the section **HoL Visual Inspection HoL Custom**, set up your Raspberry pi. Set up Custom vision portal and your project, tag the images and train the model.
 - Complete all the steps until trigger the Build solution in Visual Code, you will leave it running at the end of the day to continue the following.
 
 **Day #3:**
