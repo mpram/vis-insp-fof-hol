@@ -36,7 +36,7 @@ Pre-session:
 # Hardware & Software requirements for the Accelerator
 
 ## 1. Hardware requirements:
-The following requirements will be for your Raspebrry set up
+The following requirements will be for your Raspberry pi set up
 
 - <a href="https://www.amazon.com/Raspberry-Pi-Computer-Suitable-Workstation/dp/B0899VXM8F/ref=sr_1_3?keywords=raspberry+pi+4+8gb&qid=1647631122&sprefix=raspbe%2Caps%2C299&sr=8-3">Raspberry Pi 4</a>
 
@@ -70,7 +70,7 @@ The following requirements will be for your Raspebrry set up
 
 
 
-To start your journey you can continue to the section **Instructions/Before HoL** section.
+To start your journey you can continue to the section **Instructions/Before HoL Steps**.
 
 **Contact info: visualinspections@microsoft.com**
 
