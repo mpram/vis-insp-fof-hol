@@ -49,11 +49,14 @@ The following requirements will be for your Raspberry pi set up
 
 - <a href="https://www.amazon.com/UGREEN-Adapter-Ethernet-Compatible-Raspberry/dp/B06WWQ7KLV/ref=sr_1_3?keywords=micro+hdmi+to+hdmi&qid=1647632043&s=electronics&sprefix=micro+hdmi%2Celectronics%2C177&sr=1-3">Micro HDMI to HDMI Cable Adapter 4K 60Hz</a>
 
+- <a href="https://www.amazon.com/Logitech-C920x-Pro-HD-Webcam/dp/B085TFF7M1/ref=sr_1_4?crid=1YYUOHACD5UJ9&keywords=logitech%2Bwebcam&qid=1657560970&sprefix=logitech%2B%2Caps%2C139&sr=8-4&th=1">USB Webcam</a>
+
 - Keyboard, any USB Keyboard for your raspberry pi setup
 - Mouse, any USB Mouse for your raspberry pi setup
 - Monitor, any Monitor with HDMI input for your - raspberry pi setup
 - Ethernet Cable
-- USB Camera
+
+
 
 ## 2. Azure Services:
   - Azure IoT Central
