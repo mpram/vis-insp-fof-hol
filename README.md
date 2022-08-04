@@ -1,5 +1,7 @@
 ## **Visual Inspections for Factory Floor Accelerator**
 
+## **Unified Edge(Light Edge Technologies)**
+
 This Visual Inspections workshop is oriented for Factory Floor users, during this workshop they will be able to test and learn technologies based in their use cases and after this custom training they will be able to move to a production ready solution with a clear path. 
 
 This is not a production ready solution. It was built with the intention of learning and accelerate the Digital Transformation in factory Floors. 
